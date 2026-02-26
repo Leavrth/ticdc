@@ -21,6 +21,7 @@ import (
 	"github.com/pingcap/ticdc/pkg/config"
 	"github.com/pingcap/ticdc/pkg/errors"
 	cerror "github.com/pingcap/ticdc/pkg/errors"
+	"github.com/pingcap/ticdc/pkg/sink/codec/aajson"
 	"github.com/pingcap/ticdc/pkg/sink/codec/avro"
 	"github.com/pingcap/ticdc/pkg/sink/codec/canal"
 	"github.com/pingcap/ticdc/pkg/sink/codec/common"
@@ -82,6 +83,8 @@ func NewTxnEventEncoder(
 		return csv.NewTxnEventEncoder(c), nil
 	case config.ProtocolCanalJSON:
 		return canal.NewJSONTxnEventEncoder(c), nil
+	case config.ProtocolAAJSON:
+		return aajson.NewTxnEventEncoder(c), nil
 	default:
 		return nil, errors.ErrSinkUnknownProtocol.GenWithStackByArgs(c.Protocol)
 	}

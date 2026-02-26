@@ -62,6 +62,10 @@ func TestParseSinkProtocolFromString(t *testing.T) {
 			protocol:             "open-protocol",
 			expectedProtocolEnum: ProtocolOpen,
 		},
+		{
+			protocol:             "aa-json",
+			expectedProtocolEnum: ProtocolAAJSON,
+		},
 	}
 
 	for _, tc := range testCases {
@@ -108,6 +112,10 @@ func TestString(t *testing.T) {
 		{
 			protocolEnum:     ProtocolOpen,
 			expectedProtocol: "open-protocol",
+		},
+		{
+			protocolEnum:     ProtocolAAJSON,
+			expectedProtocol: "aa-json",
 		},
 	}
 
